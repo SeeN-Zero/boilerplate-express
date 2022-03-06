@@ -1,32 +1,39 @@
-require('dotenv').config();
+require("dotenv").config();
+var bodyParser = require("body-parser");
 var express = require("express");
 var app = express();
+
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 // console.log("Hello World");
 app.get("/", (req, res) => {
   res.sendFile(__dirname + "/views/index.html");
 });
 
-app.get("/now",function (req, res, next) {
+app.get(
+  "/now",
+  function (req, res, next) {
     req.time = new Date().toString();
     next();
-  }, function (req, res) {
-    res.send({time: req.time});
+  },
+  function (req, res) {
+    res.send({ time: req.time });
   }
 );
 
-app.get("/name", function(req, res) {
+app.get("/name", function (req, res) {
   var firstName = req.query.first;
   var lastName = req.query.last;
   res.json({
-    name: `${firstName} ${lastName}`
+    name: `${firstName} ${lastName}`,
   });
 });
 
 app.get("/:word/echo", (req, res) => {
   const { word } = req.params;
   res.json({
-    echo: word
+    echo: word,
   });
 });
 
@@ -39,9 +46,9 @@ app.use("/public", express.static(__dirname + "/public"));
 
 app.get("/json", (req, res) => {
   if (process.env.MESSAGE_STYLE === "uppercase") {
-    res.json({"message": "HELLO JSON" });
+    res.json({ message: "HELLO JSON" });
   } else {
-    res.json({ "message": "Hello json" });
+    res.json({ message: "Hello json" });
   }
 });
 
