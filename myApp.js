@@ -11,6 +11,12 @@ app.get("/", (req, res) => {
   res.sendFile(__dirname + "/views/index.html");
 });
 
+app.post("/name", function (req, res) {
+  // Handle the data in the request
+  var name = req.body.first + " " + req.body.last;
+  res.json({ name: name });
+});
+
 app.get(
   "/now",
   function (req, res, next) {
