@@ -16,10 +16,10 @@ app.get("/now",function (req, res, next) {
 );
 
 app.get("/name", function(req, res) {
-  var first = req.query.first;
-  var last = req.query.last;
+  var firstName = req.query.first;
+  var lastName = req.query.last;
   res.json({
-    name: "${first} ${last}"
+    name: "${firstName} ${lastName}"
   });
 });
 
