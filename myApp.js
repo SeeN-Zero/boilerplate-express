@@ -9,7 +9,11 @@ app.get("/", (req, res) => {
 app.use("/public", express.static(__dirname + "/public"));
 
 app.get("/json", (req, res) => {
-  res.json({ "message" : "Hello json" });
+  if (process.env.VAR_NAME === "uppercase") {
+    response = "Hello World".toUpperCase();
+  } else {
+    response = "Hello World";
+  }
 });
 
 module.exports = app;
