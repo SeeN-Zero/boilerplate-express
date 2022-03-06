@@ -18,7 +18,6 @@ app.get("/now",function (req, res, next) {
 app.get("/name", function(req, res) {
   var first = req.query.first;
   var last = req.query.last;
-  var { first, last } = req.query;
   res.json({
     name: "${first} ${last}"
   });
